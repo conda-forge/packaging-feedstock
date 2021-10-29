@@ -24,8 +24,12 @@ requirements:
     - pyparsing <3,>=2.0.2
 
 test:
+  requires:
+    - pip
   imports:
     - packaging
+  commands:
+    - pip check
 
 about:
   home: https://github.com/pypa/packaging
