@@ -1,4 +1,4 @@
-{% set version = "21.2" %}
+{% set version = "21.3" %}
 
 package:
   name: packaging
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/p/packaging/packaging-{{ version }}.tar.gz
-  sha256: 096d689d78ca690e4cd8a89568ba06d07ca097e3306a4381635073ca91479966
+  sha256: dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
@@ -21,7 +21,7 @@ requirements:
 
   run:
     - python >=3.6
-    - pyparsing <3,>=2.0.2
+    - pyparsing >=2.0.2,!=3.0.5
 
 test:
   requires:
