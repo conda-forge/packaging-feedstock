@@ -1,4 +1,4 @@
-{% set version = "23.0" %}
+{% set version = "23.1" %}
 
 package:
   name: packaging
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/p/packaging/packaging-{{ version }}.tar.gz
-  sha256: b6ad297f8907de0fa2fe1ccbd26fdaf387f5f47c7275fedf8cce89f99446cf97
+  sha256: a392980d2b6cffa644431898be54b0045151319d1e7ec34f0cfed48767dd334f
 
 build:
   number: 0
