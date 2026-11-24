@@ -9,7 +9,7 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/p/packaging/packaging-${{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/p/packaging/packaging-${{ version }}.tar.gz
   sha256: c4b671c41ddb9bf26e543c37723610d28fb6bf7affc4da17cf048d419d2c062a
 
 build:
