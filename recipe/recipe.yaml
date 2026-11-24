@@ -19,7 +19,14 @@ build:
 
 requirements:
   host:
-    - python ${{ python_min }}.*
+    # conda-forge's pip prior to Python 3.13 depends on wheel, which depends on
+    # packaging, so using pip for python_min older than 3.13 would put an older
+    # packaging in host and the new install would clobber it, leaving its files
+    # out of the package. Until packaging has requires-python of >= 3.13
+    # manually force python 3.13 as the host Python.
+    # See https://conda-forge.org/news/2024/08/21/sunsetting-pip-deps/
+    # - python ${{ python_min }}.*
+    - python 3.13.*
     - flit-core >=3.12
     - pip
   run:
