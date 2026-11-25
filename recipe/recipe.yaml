@@ -1,16 +1,16 @@
 schema_version: 1
 
 context:
-  version: "26.3"
-  python_min: "3.9"
+  version: "26.4"
+  python_min: "3.10"
 
 package:
   name: packaging
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/p/packaging/packaging-${{ version }}.tar.gz
-  sha256: 94edc256424af38762eb31306eed28beb9f0efc50a8837492c9d6fd6004aed79
+  url: https://files.pythonhosted.org/packages/source/p/packaging/packaging-${{ version }}.tar.gz
+  sha256: c4b671c41ddb9bf26e543c37723610d28fb6bf7affc4da17cf048d419d2c062a
 
 build:
   number: 0
@@ -19,7 +19,14 @@ build:
 
 requirements:
   host:
-    - python ${{ python_min }}.*
+    # conda-forge's pip prior to Python 3.13 depends on wheel, which depends on
+    # packaging, so using pip for python_min older than 3.13 would put an older
+    # packaging in host and the new install would clobber it, leaving its files
+    # out of the package. Until packaging has requires-python of >= 3.13
+    # manually force python 3.13 as the host Python.
+    # See https://conda-forge.org/news/2024/08/21/sunsetting-pip-deps/
+    # - python ${{ python_min }}.*
+    - python 3.13.*
     - flit-core >=3.12
     - pip
   run:
@@ -30,7 +37,9 @@ tests:
       imports:
         - packaging
       pip_check: true
-      python_version: ${{ python_min }}.*
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
 
 about:
   license: Apache-2.0
@@ -42,6 +51,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - henryiii
     - jakirkham
     - nicoddemus
     - matthewfeickert
